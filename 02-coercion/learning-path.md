@@ -2,8 +2,6 @@
 
 A structured roadmap to learn coercion in JavaScript in a deep, practical, and step-by-step way.
 
----
-
 ## Purpose of this plan
 
 This learning path is designed to help me learn coercion properly without trying to understand everything at once.
@@ -15,8 +13,6 @@ The goal is to:
 - connect coercion to real JavaScript behavior
 - use the ECMAScript specification as a reference when needed
 - avoid shallow memorization of weird examples
-
----
 
 ## How this topic will be studied
 
@@ -52,8 +48,6 @@ For each stage, the teaching flow should be:
 
 We should only move to the next stage after the current one is clear.
 
----
-
 ## Main study principle
 
 I do **not** need to memorize every JavaScript internal algorithm.
@@ -64,8 +58,6 @@ I **do** need to understand:
 - the mental models behind them
 - the most useful abstract operations from the spec
 - how to verify behavior from the ECMAScript docs when needed
-
----
 
 ## Core topics we will focus on
 
@@ -81,8 +73,6 @@ These are the high-value parts of coercion that matter most in real coding and i
 - why strict equality (`===`) avoids most coercion issues
 - real-world coding practices around coercion
 - spec navigation
-
----
 
 ## Recommended study order
 
@@ -103,8 +93,6 @@ This order is chosen because:
 - number and string coercion are very common in real code
 - object coercion is harder, so it should come later
 - `==` becomes much easier after understanding the earlier rules
-
----
 
 # Stage 0 — Build the base mental model
 
@@ -131,14 +119,6 @@ I should be able to explain:
 
 - Type Conversion:  
   https://tc39.es/ecma262/multipage/abstract-operations.html#sec-type-conversion
-
-## Progress
-
-- [ ] Not started
-- [ ] In progress
-- [ ] Completed
-
----
 
 # Stage 1 — Primitive values and where coercion happens
 
@@ -170,14 +150,6 @@ I should be able to say:
 
 - ECMAScript Data Types and Values:  
   https://tc39.es/ecma262/multipage/ecmascript-data-types-and-values.html
-
-## Progress
-
-- [ ] Not started
-- [ ] In progress
-- [ ] Completed
-
----
 
 # Stage 2 — `ToBoolean`
 
