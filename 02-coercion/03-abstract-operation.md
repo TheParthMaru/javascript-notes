@@ -244,3 +244,31 @@ Number("hello"); // NaN
 Number("10n"); // NaN
 Number("1_000"); // NaN
 ```
+
+## `ToString`
+
+![alt text](screenshots/ToString.png)
+
+- Abstraction opeartion for string-conversion side of coercion.
+- Most of the steps are self explanatory.
+- Step 7: Convert the number to its decimal string representation.
+
+```js
+String(42); // "42"
+String(3.14); // "3.14"
+String(-7); // "-7"
+String(NaN); // "NaN"
+String(Infinity); // "Infinity"
+```
+
+- Step 8: `BigInt` becomes its base-10 string form.
+
+```js
+String(10n); // "10"
+String(999n); // "999"
+```
+
+- `ToNumber(BigInt)` → error
+- `ToString(BigInt)` → works
+
+- Step 9 to 12: If the argument is an object, first convert it to primitive. Make sure the result is not still an object. Then call `ToString` again on that primitive.
