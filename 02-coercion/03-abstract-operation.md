@@ -272,3 +272,33 @@ String(999n); // "999"
 - `ToString(BigInt)` → works
 
 - Step 9 to 12: If the argument is an object, first convert it to primitive. Make sure the result is not still an object. Then call `ToString` again on that primitive.
+
+## `ToPrimitive`
+
+![alt text](screenshots/ToPrimitive.png)
+
+- An abstract operation that converts a value to a non-object type.
+- The main idea is that if the input is already not an object, return it as it is.
+- If the input is an object, then JS tries to get a primitive value out of it.
+- This happens by first checking the `Symbol.toPrimitive` on the object. If this exists, then JS uses it first.
+- If `Symbol.toPrimitive` exists, JS decides what hint to pass:
+  - if no preferred type was given → `"default"`
+  - if preferred type is string → `"string"`
+  - if preferred type is number → `"number"`
+- Then JS calls the `Symbol.toPrimitive` with the chosen hint that does the following:
+  - if the result is not an object, return it.
+  - if the result is still an object, throw `TypeError`.
+- `ToPrimitive` must produce a primitive value, not another object.
+- In case if no `Symbol.toPrimitive`, then JS got a fallback option named `OrdinaryToPrimitive(input, preferredType)`.
+- If no `preferredType` is provided then the default is `number`.
+
+## `OrdinaryToPrimitive`
+
+![alt text](screenshots/OrdinaryToPrimitive.png)
+
+- There are paths that could be followed:
+  1. Use `toString()` first, then `valueOf()` or
+  2. Use `valueOf()` first, then `toString()`
+- The above depends on the `hint`.
+- If `hint` is `string`, then the order is `toString() -> valueOf()`
+- If `hint` is `number`, then the order is `valueOf() -> toString()`
