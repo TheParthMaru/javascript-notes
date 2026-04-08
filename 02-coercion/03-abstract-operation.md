@@ -18,6 +18,8 @@
 
 ## `ToBoolean`
 
+![alt text](screenshots/ToBoolean.png)
+
 - Source: https://tc39.es/ecma262/multipage/abstract-operations.html#sec-toboolean
 - An abstract operation JS uses when a value has to be treated as `true` or `false`.
 - ECMAScript defines it as `ToBoolean(argument)`.
@@ -162,3 +164,83 @@ Boolean([]); // true
 
 - Use implicit boolean coercion in simple conditions when it is obvious.
 - Use explicit `Boolean(...)` when clarity matters more.
+
+## `ToNumber`
+
+![alt text](screenshots/ToNumber.png)
+
+- Source: https://tc39.es/ecma262/multipage/abstract-operations.html#sec-tonumber
+
+- `ToNumber(args)` is an abstract operation to convert a value into `Number` value.
+- `Number` coercion commonly happens in numeric contexts such as:
+  - unary plus: `+"5"`
+  - subtraction: `"5" - 1`
+  - multiplication: `"6" * 2`
+  - division: `"20" / 4`
+  - many built-in numeric operations also call `ToNumber`; for example, `Math.max` and `Math.min` call `ToNumber` on each argument.
+
+### Direct conversion examples
+
+```js
+Number(42); // 42
+
+// String to number
+Number("42"); // 42
+Number("  42 "); // 42
+Number(""); // 0
+
+// Boolean values
+Number(true); // 1
+Number(false); // 0
+
+// null and undefined
+Number(null); // 0
+Number(undefined); // NaN
+```
+
+### Specific Coercion
+
+- For the types such as `bigint` and `symbol`, `ToNumber()` throws a `TypeError`.
+- If the argument is `string`, use `StringToNumber` as follows:
+
+```js
+Number("42"); // 42
+Number("   42"); // 42
+Number("0"); // 0
+Number("hello"); // NaN, the string cannot be converted to a valid number
+```
+
+- If the argument is an object, first it needs to be converted to its primitive value using `ToPrimitive()` abstract operation.
+- Then `ToNumber()` is called again on the resulting primitve.
+
+## `StringToNumber`
+
+![alt text](screenshots/StringToNumber.png)
+
+- `StringToNumber` is an abstract operation in the ECMAScript spec.
+- It is used when `ToNumber(argument)` receives a string.
+
+### Simple meaning of each step
+
+1. Parse the string using `StringNumericLiteral`
+   - The spec first tries to read the string using a special numeric grammar called `StringNumericLiteral` and check whether the string fits the allowed numeric-string grammar.
+
+2. If parsing fails, return `NaN`.
+3. If parsing succeeds, return its numeric value.
+
+### Examples:
+
+```js
+Number("25"); // 25
+Number("  25 "); // 25
+Number(""); // 0
+Number("    "); // 0
+Number("+25"); // 25
+Number("-25"); // -25
+Number("00042"); // 42
+Number("Infinity"); // Infinity
+Number("-Infinity"); // -Infinity
+Number("hello"); // NaN
+Number("10n"); // NaN
+Number("1_000"); // NaN
+```
