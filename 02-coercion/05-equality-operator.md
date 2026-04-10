@@ -110,8 +110,6 @@ NaN === NaN; // false
 
 These are important number-specific details.
 
----
-
 # 4. `IsLooselyEqual(x, y)`
 
 Now the main topic.
@@ -185,8 +183,6 @@ NaN == NaN; // false
 
 because same type leads to strict number equality rules.
 
----
-
 ## Rule 2 and 3 — `null` and `undefined` are loosely equal to each other
 
 If:
@@ -217,8 +213,6 @@ This does **not** mean:
 
 Those are different cases.
 
----
-
 ## Rule 4 — Normative optional browser-specific case
 
 This is the `[[IsHTMLDDA]]` case.
@@ -228,8 +222,6 @@ This is a special browser-related historical behavior and is not important for n
 For now, you can safely treat this as:
 
 > special legacy web behavior, not part of normal everyday equality reasoning.
-
----
 
 ## Rule 5 — Number compared with String
 
@@ -257,8 +249,6 @@ Flow:
 4. same type now → strict equality
 5. result → `true`
 
----
-
 ## Rule 6 — String compared with Number
 
 If:
@@ -283,8 +273,6 @@ Flow:
 2. convert `"5"` → `5`
 3. compare again: `5 == 5`
 4. result → `true`
-
----
 
 ## Rule 7 — BigInt compared with String
 
@@ -315,8 +303,6 @@ Because `"10"` can become BigInt `10n`.
 
 Because `"10.5"` is not a valid BigInt string.
 
----
-
 ## Rule 8 — String compared with BigInt
 
 This just reverses the previous case.
@@ -326,8 +312,6 @@ This just reverses the previous case.
 ```js
 "10" == 10n; // true
 ```
-
----
 
 ## Rule 9 — Boolean on the left
 
@@ -355,8 +339,6 @@ Flow:
 true == 1; // true
 ```
 
----
-
 ## Rule 10 — Boolean on the right
 
 If `y` is a Boolean:
@@ -376,8 +358,6 @@ Flow:
 2. `ToNumber(false)` → `0`
 3. compare again: `0 == 0`
 4. result → `true`
-
----
 
 ## Rule 11 — Primitive-like value compared with Object
 
@@ -411,8 +391,6 @@ Flow:
 
 This is where object equality weirdness begins.
 
----
-
 ## Rule 12 — Object compared with primitive-like value
 
 If `x` is an Object and `y` is one of:
@@ -439,8 +417,6 @@ Flow:
 2. right is Number
 3. convert `[1]` using `ToPrimitive`
 4. compare again with resulting primitive
-
----
 
 ## Rule 13 — BigInt and Number comparison
 
@@ -470,8 +446,6 @@ Do not confuse it with numeric operations like:
 
 That is operator logic, not loose equality logic.
 
----
-
 ## Rule 14 — Otherwise return false
 
 If none of the special cases matched, the result is:
@@ -479,8 +453,6 @@ If none of the special cases matched, the result is:
 ```js
 false;
 ```
-
----
 
 # 7. The recursive nature of `==`
 
@@ -510,8 +482,6 @@ Flow:
 
 This is why `==` can feel tricky.
 
----
-
 # 8. Important classic examples
 
 ## Example 1
@@ -526,8 +496,6 @@ Reason:
 - convert string to number
 - compare `5 == 5`
 
----
-
 ## Example 2
 
 ```js
@@ -538,8 +506,6 @@ Reason:
 
 - Boolean becomes `0`
 - compare `0 == 0`
-
----
 
 ## Example 3
 
@@ -554,8 +520,6 @@ Reason:
 3. `ToNumber("")` → `0`
 4. compare `0 == 0`
 
----
-
 ## Example 4
 
 ```js
@@ -565,8 +529,6 @@ null == undefined; // true
 Reason:
 
 - direct special-case rule
-
----
 
 ## Example 5
 
@@ -579,8 +541,6 @@ Reason:
 - there is no rule saying `null` should become `0` in loose equality
 - special `null` rule only pairs it with `undefined`
 
----
-
 ## Example 6
 
 ```js
@@ -590,8 +550,6 @@ undefined == 0; // false
 Reason:
 
 - no matching conversion rule to make this true
-
----
 
 ## Example 7
 
@@ -611,8 +569,6 @@ Step-by-step high-level flow:
 
 This is why object cases feel weird.
 
----
-
 ## Example 8
 
 ```js
@@ -626,8 +582,6 @@ Reason:
 - then String vs Number rule converts `"1"` to `1`
 - compare `1 == 1`
 
----
-
 ## Example 9
 
 ```js
@@ -639,8 +593,6 @@ Reason:
 - object becomes primitive
 - both sides can end up as same string value
 
----
-
 ## Example 10
 
 ```js
@@ -651,8 +603,6 @@ Reason:
 
 - same type → strict equality
 - strict numeric equality says `NaN` is not equal to `NaN`
-
----
 
 # 9. Very important contrast: `==` vs `===`
 
@@ -669,8 +619,6 @@ Reason:
 - may recurse
 - object-to-primitive conversion may happen
 - more surprising
-
----
 
 # 10. When `==` is sometimes acceptable
 
@@ -703,8 +651,6 @@ value === null || value === undefined;
 
 But outside of such cases, `===` is usually clearer and safer.
 
----
-
 # 11. Common mistakes
 
 ## Mistake 1
@@ -714,8 +660,6 @@ Thinking `==` always converts both sides to numbers.
 Wrong.  
 It uses type-pair-specific rules.
 
----
-
 ## Mistake 2
 
 Thinking `null == 0` should be true because `Number(null)` is `0`.
@@ -723,16 +667,12 @@ Thinking `null == 0` should be true because `Number(null)` is `0`.
 Wrong.  
 Loose equality is not simply `ToNumber` on both sides.
 
----
-
 ## Mistake 3
 
 Thinking object comparisons are direct.
 
 Wrong.  
 Objects may first go through `ToPrimitive`.
-
----
 
 ## Mistake 4
 
@@ -745,8 +685,6 @@ if ("") { ... }   // boolean coercion
 "" == 0           // loose equality
 ```
 
----
-
 ## Mistake 5
 
 Assuming `===` means “better version of `==`”.
@@ -754,8 +692,6 @@ Assuming `===` means “better version of `==`”.
 Not exactly.
 
 They are different algorithms with different behavior.
-
----
 
 # 12. Best practices
 
@@ -795,8 +731,6 @@ are valid but not readable.
 
 Avoid writing code that depends on such behavior.
 
----
-
 # 13. Final summary table
 
 | Expression           | Result  | Main reason                            |
@@ -812,8 +746,6 @@ Avoid writing code that depends on such behavior.
 | `5 === "5"`          | `false` | type mismatch                          |
 | `null === undefined` | `false` | type mismatch                          |
 
----
-
 # 14. Mini summary
 
 - `===` first checks type and does not perform cross-type coercion
@@ -824,22 +756,3 @@ Avoid writing code that depends on such behavior.
 - objects may become primitives
 - `==` is recursive in many cases
 - `===` should be your default choice in real-world code
-
----
-
-# 15. Suggested practice questions
-
-Try explaining these step by step from the algorithm:
-
-```js
-5 == "5"
-false == "0"
-"" == 0
-null == undefined
-null == 0
-[] == 0
-[1] == 1
-1n == 1
-NaN == NaN
-5 === "5"
-```
