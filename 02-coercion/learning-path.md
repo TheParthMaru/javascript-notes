@@ -177,14 +177,6 @@ I should be able to predict condition checks without guessing.
 - `ToBoolean(argument)`:  
   https://tc39.es/ecma262/multipage/abstract-operations.html#sec-toboolean
 
-## Progress
-
-- [ ] Not started
-- [ ] In progress
-- [ ] Completed
-
----
-
 # Stage 3 — `ToNumber`
 
 ## Goal
@@ -218,14 +210,6 @@ I should be able to explain cases like:
 - `ToNumber(argument)`:  
   https://tc39.es/ecma262/multipage/abstract-operations.html#sec-tonumber
 
-## Progress
-
-- [ ] Not started
-- [ ] In progress
-- [ ] Completed
-
----
-
 # Stage 4 — `ToString`
 
 ## Goal
@@ -252,14 +236,6 @@ I should be able to explain when JavaScript is doing:
 
 - `ToString(argument)`:  
   https://tc39.es/ecma262/multipage/abstract-operations.html#sec-tostring
-
-## Progress
-
-- [ ] Not started
-- [ ] In progress
-- [ ] Completed
-
----
 
 # Stage 5 — `ToPrimitive`
 
@@ -296,14 +272,6 @@ I should be able to explain:
 - `OrdinaryToPrimitive(O, hint)`:  
   https://tc39.es/ecma262/multipage/abstract-operations.html#sec-ordinarytoprimitive
 
-## Progress
-
-- [ ] Not started
-- [ ] In progress
-- [ ] Completed
-
----
-
 # Stage 6 — Operator-based coercion
 
 ## Goal
@@ -334,14 +302,6 @@ I should stop treating coercion as one generic thing and start asking:
   https://tc39.es/ecma262/multipage/ecmascript-language-expressions.html#sec-addition-operator-plus
 - Unary plus operator:  
   https://tc39.es/ecma262/multipage/ecmascript-language-expressions.html#sec-unary-plus-operator
-
-## Progress
-
-- [ ] Not started
-- [ ] In progress
-- [ ] Completed
-
----
 
 # Stage 7 — Loose equality `==`
 
