@@ -2,3 +2,4 @@
 
 - [ ] Add notes on bitwise operators.
 - [ ] Move rest & spread operators to their respective sections.
+- [ ] Read about scopes in js on mdn.
